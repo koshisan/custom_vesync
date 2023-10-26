@@ -9,7 +9,7 @@ from homeassistant.helpers.entity import EntityCategory
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 
 from .common import VeSyncBaseEntity, has_feature
-from .const import DOMAIN, VS_BINARY_SENSORS, VS_DISCOVERY, BINARY_SENSOR_TYPES_AIRFRYER
+from .const import BINARY_SENSOR_TYPES_AIRFRYER, DOMAIN, VS_BINARY_SENSORS, VS_DISCOVERY
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -62,6 +62,8 @@ def _setup_entities(devices, async_add_entities, coordinator):
 
 
 class VeSyncairfryerSensor(VeSyncBaseEntity, BinarySensorEntity):
+    """Class representing a VeSyncairfryerSensor."""
+
     def __init__(self, airfryer, coordinator, stype) -> None:
         """Initialize the VeSync humidifier device."""
         super().__init__(airfryer, coordinator)

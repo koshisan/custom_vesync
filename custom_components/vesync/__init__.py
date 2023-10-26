@@ -15,6 +15,7 @@ from .const import (
     DOMAIN,
     SERVICE_UPDATE_DEVS,
     VS_BINARY_SENSORS,
+    VS_BUTTON,
     VS_DISCOVERY,
     VS_FANS,
     VS_HUMIDIFIERS,
@@ -23,7 +24,6 @@ from .const import (
     VS_NUMBERS,
     VS_SENSORS,
     VS_SWITCHES,
-    VS_BUTTON,
 )
 
 PLATFORMS = {

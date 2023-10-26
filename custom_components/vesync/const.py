@@ -1,10 +1,6 @@
 """Constants for VeSync Component."""
 
-from homeassistant.const import (
-    TEMP_CELSIUS,
-    TIME_MINUTES,
-    DEVICE_CLASS_TEMPERATURE,
-)
+from homeassistant.const import DEVICE_CLASS_TEMPERATURE, TEMP_CELSIUS, TIME_MINUTES
 
 DOMAIN = "vesync"
 VS_DISCOVERY = "vesync_discovery_{}"

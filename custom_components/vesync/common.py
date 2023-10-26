@@ -11,6 +11,7 @@ from .const import (
     DOMAIN,
     VS_AIRFRYER_TYPES,
     VS_BINARY_SENSORS,
+    VS_BUTTON,
     VS_FAN_TYPES,
     VS_FANS,
     VS_HUMIDIFIERS,
@@ -19,7 +20,6 @@ from .const import (
     VS_NUMBERS,
     VS_SENSORS,
     VS_SWITCHES,
-    VS_BUTTON,
 )
 
 _LOGGER = logging.getLogger(__name__)

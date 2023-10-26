@@ -7,11 +7,7 @@ from homeassistant.components.sensor import (
     SensorStateClass,
 )
 from homeassistant.config_entries import ConfigEntry
-from homeassistant.const import (
-    ENERGY_KILO_WATT_HOUR,
-    PERCENTAGE,
-    POWER_WATT,
-)
+from homeassistant.const import ENERGY_KILO_WATT_HOUR, PERCENTAGE, POWER_WATT
 from homeassistant.core import HomeAssistant, callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect
 from homeassistant.helpers.entity import EntityCategory
@@ -21,9 +17,9 @@ from .common import VeSyncBaseEntity, has_feature
 from .const import (
     DEV_TYPE_TO_HA,
     DOMAIN,
+    SENSOR_TYPES_AIRFRYER,
     VS_DISCOVERY,
     VS_SENSORS,
-    SENSOR_TYPES_AIRFRYER,
 )
 
 _LOGGER = logging.getLogger(__name__)
@@ -89,9 +85,10 @@ def _setup_entities(devices, async_add_entities, coordinator):
 
 
 class VeSyncairfryerSensor(VeSyncBaseEntity, SensorEntity):
-    def __init__(self, airfryer, coordinator, stype) -> None:
-        """Initialize the VeSync outlet device."""
+    """Class representing a VeSyncairfryerSensor."""
 
+    def __init__(self, airfryer, coordinator, stype) -> None:
+        """Initialize the VeSync airfryer."""
         super().__init__(airfryer, coordinator)
         self.airfryer = airfryer
         self.stype = stype
@@ -108,15 +105,18 @@ class VeSyncairfryerSensor(VeSyncBaseEntity, SensorEntity):
 
     @property
     def device_class(self):
+        """Return the class."""
         return self.stype[4]
 
     @property
     def native_value(self):
+        """Return the value."""
         value = getattr(self.airfryer, self.stype[5], None)
         return value
 
     @property
     def native_unit_of_measurement(self):
+        """Return the unit of measurement."""
         # return self.airfryer.temp_unit
         return self.stype[2]
 
