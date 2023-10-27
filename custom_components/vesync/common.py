@@ -104,7 +104,9 @@ async def async_process_devices(hass, manager):
                 in VS_AIRFRYER_TYPES
             ):
                 _LOGGER.warning(
-                    "Found air fryer %s, support in progress.\n%s", airfryer.device_name
+                    "Found air fryer type %s, model %s support in progress.\n",
+                    airfryer.device_name,
+                    airfryer.device_type,
                 )
                 devices[VS_SENSORS].append(airfryer)
                 devices[VS_BINARY_SENSORS].append(airfryer)

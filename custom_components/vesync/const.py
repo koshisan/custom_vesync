@@ -29,7 +29,7 @@ VS_TO_HA_ATTRIBUTES = {"humidity": "current_humidity"}
 
 VS_FAN_TYPES = ["VeSyncAirBypass", "VeSyncAir131", "VeSyncVital"]
 VS_HUMIDIFIERS_TYPES = ["VeSyncHumid200300S", "VeSyncHumid200S", "VeSyncHumid1000S"]
-VS_AIRFRYER_TYPES = ["VeSyncAirFryer158"]
+VS_AIRFRYER_TYPES = ["VeSyncAirFryer158", "VeSyncAirFryerCAF"]
 
 
 DEV_TYPE_TO_HA = {

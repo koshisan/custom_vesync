@@ -1,1 +1,1 @@
-pyvesync==2.1.10
+pyvesync @ git+https://github.com/tv4you2016/pyvesync/tree/CAF-P583S-KUS
