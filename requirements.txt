@@ -1,1 +1,1 @@
-pyvesync @ git+https://github.com/tv4you2016/pyvesync/tree/CAF-P583S-KUS
+pyvesync @ git+https://github.com/tv4you2016/pyvesync.git@CAF-P583S-KUS
