@@ -7,11 +7,19 @@ from homeassistant.components.sensor import (
     SensorStateClass,
 )
 from homeassistant.config_entries import ConfigEntry
-from homeassistant.const import ENERGY_KILO_WATT_HOUR, PERCENTAGE, POWER_WATT
+from homeassistant.const import (
+    ENERGY_KILO_WATT_HOUR,
+    PERCENTAGE,
+    POWER_WATT,
+)
+
+from .const import VS_AIRFRYER_TYPES
 from homeassistant.core import HomeAssistant, callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect
 from homeassistant.helpers.entity import EntityCategory
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
+from pyvesync.vesynckitchen import model_features as kitchen_model_features
+
 
 from .common import VeSyncBaseEntity, has_feature
 from .const import (
@@ -55,15 +63,21 @@ def _setup_entities(devices, async_add_entities, coordinator):
     """Check if device is online and add entity."""
     entities = []
     for dev in devices:
-        if hasattr(dev, "fryer_status"):
+        if kitchen_model_features(dev.device_type)["module"] in VS_AIRFRYER_TYPES:
             for stype in SENSOR_TYPES_AIRFRYER.values():
-                entities.append(
-                    VeSyncairfryerSensor(
-                        dev,
-                        coordinator,
-                        stype,
+                if (
+                    kitchen_model_features(dev.device_type)["module"]
+                    == "VeSyncAirFryerCAF"
+                ) and (stype[0] == "preheat_last_time"):
+                    """NOT preheat VeSyncAirFryerCAF ."""
+                else:
+                    entities.append(
+                        VeSyncairfryerSensor(
+                            dev,
+                            coordinator,
+                            stype,
+                        )
                     )
-                )
 
         if DEV_TYPE_TO_HA.get(dev.device_type) == "outlet":
             entities.extend(

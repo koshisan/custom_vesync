@@ -19,6 +19,7 @@ from .const import (
     VS_LIGHTS,
     VS_NUMBERS,
     VS_SENSORS,
+
     VS_SWITCHES,
 )
 
@@ -112,6 +113,7 @@ async def async_process_devices(hass, manager):
                 devices[VS_BINARY_SENSORS].append(airfryer)
                 devices[VS_SWITCHES].append(airfryer)
                 devices[VS_BUTTON].append(airfryer)
+                devices[VS_NUMBERS].append(airfryer)
             else:
                 _LOGGER.warning(
                     "Unknown device type %s %s (enable debug for more info)",

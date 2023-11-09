@@ -35,6 +35,7 @@ PLATFORMS = {
     Platform.NUMBER: VS_NUMBERS,
     Platform.BINARY_SENSOR: VS_BINARY_SENSORS,
     Platform.BUTTON: VS_BUTTON,
+
 }
 
 _LOGGER = logging.getLogger(__name__)

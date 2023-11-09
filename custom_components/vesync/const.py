@@ -6,6 +6,7 @@ DOMAIN = "vesync"
 VS_DISCOVERY = "vesync_discovery_{}"
 SERVICE_UPDATE_DEVS = "update_devices"
 
+
 VS_BUTTON = "button"
 VS_SWITCHES = "switches"
 VS_FAN = "fan"
@@ -66,6 +67,19 @@ BINARY_SENSOR_TYPES_AIRFRYER = {
     ],
 }
 
+NUMBER_TYPES_AIRFRYER = {
+    # unique_id,name # icon, #attribute read,
+    "cook_temp": [
+        "cook_temp",
+        "cook temperature",
+        "mdi:pot-steam-outline",
+    ],
+    "cook_time": [
+        "cook_time",
+        "cook time",
+        "mdi:rice",
+    ]
+}
 
 SENSOR_TYPES_AIRFRYER = {
     # unique_id ,#name ,# unit of measurement,# icon, # device class, #attribute read,
@@ -118,3 +132,4 @@ SENSOR_TYPES_AIRFRYER = {
     #    "remaining_time",
     # ],
 }
+

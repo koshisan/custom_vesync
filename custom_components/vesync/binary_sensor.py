@@ -9,7 +9,8 @@ from homeassistant.helpers.entity import EntityCategory
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 
 from .common import VeSyncBaseEntity, has_feature
-from .const import BINARY_SENSOR_TYPES_AIRFRYER, DOMAIN, VS_BINARY_SENSORS, VS_DISCOVERY
+from .const import (BINARY_SENSOR_TYPES_AIRFRYER, DOMAIN, VS_BINARY_SENSORS, VS_DISCOVERY, VS_AIRFRYER_TYPES )
+from pyvesync.vesynckitchen import model_features as kitchen_model_features
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -44,15 +45,22 @@ def _setup_entities(devices, async_add_entities, coordinator):
     """Check if device is online and add entity."""
     entities = []
     for dev in devices:
-        if hasattr(dev, "fryer_status"):
+        if kitchen_model_features(dev.device_type)["module"] in VS_AIRFRYER_TYPES:
             for stype in BINARY_SENSOR_TYPES_AIRFRYER.values():
-                entities.append(
-                    VeSyncairfryerSensor(
-                        dev,
-                        coordinator,
-                        stype,
+                if (
+                    kitchen_model_features(dev.device_type)["module"]
+                    == "VeSyncAirFryerCAF"
+                ) and (stype[0] == "is_heating"):
+                    """NOT preheat VeSyncAirFryerCAF ."""
+                else:
+                    entities.append(
+                        VeSyncairfryerSensor(
+                            dev,
+                            coordinator,
+                            stype,
+                        )
                     )
-                )
+
         if has_feature(dev, "details", "water_lacks"):
             entities.append(VeSyncOutOfWaterSensor(dev, coordinator))
         if has_feature(dev, "details", "water_tank_lifted"):
