@@ -8,10 +8,9 @@ from homeassistant.core import HomeAssistant, callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect
 from homeassistant.helpers.entity import EntityCategory
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
-
-from .common import VeSyncBaseEntity, has_feature
 from pyvesync.vesynckitchen import model_features as kitchen_model_features
 
+from .common import VeSyncBaseEntity, has_feature
 from .const import DOMAIN, VS_DISCOVERY, VS_NUMBERS, VS_AIRFRYER_TYPES, NUMBER_TYPES_AIRFRYER
 
 MAX_HUMIDITY = 80
@@ -21,6 +20,7 @@ MAX_TEMPERATURE = 205
 
 MAX_TIME = 60
 MIN_TIME = 1
+
 
 async def async_setup_entry(
     hass: HomeAssistant,
@@ -84,7 +84,6 @@ def _setup_entities(devices, async_add_entities, coordinator):
     async_add_entities(entities, update_before_add=True)
 
 
-
 class VeSyncairfryerNumber(VeSyncBaseEntity, NumberEntity):
     """Representation of the target humidity level of a VeSync humidifier."""
 
@@ -115,7 +114,6 @@ class VeSyncairfryerNumber(VeSyncBaseEntity, NumberEntity):
     def mode(self):
         return "box"
 
-
     @property
     def name(self):
         """Return the name of the device."""
@@ -129,20 +127,16 @@ class VeSyncairfryerNumber(VeSyncBaseEntity, NumberEntity):
         else:
             return self.airfryer.cook_time
 
-
     @property
     def native_unit_of_measurement(self):
         """Return the native unit of measurement for the target humidity level."""
         if (self.stype[0] == "cook_temp"):
             if self.airfryer.temp_unit.lower() in ["f", "fahrenheit"]:
-                 return TEMP_FAHRENHEIT
+                return TEMP_FAHRENHEIT
             elif self.airfryer.temp_unit.lower() in ["c", "celsius"]:
-                 return TEMP_CELSIUS
+                return TEMP_CELSIUS
         else:
             return TIME_MINUTES
-
-
-
 
     @property
     def device_class(self):
@@ -156,8 +150,7 @@ class VeSyncairfryerNumber(VeSyncBaseEntity, NumberEntity):
         if (self.stype[0] == "cook_temp"):
             return SensorDeviceClass.TEMPERATURE
         else:
-             return SensorDeviceClass.DURATION
-
+            return SensorDeviceClass.DURATION
 
     def set_native_value(self, value):
         """Set the target humidity level."""
@@ -165,7 +158,6 @@ class VeSyncairfryerNumber(VeSyncBaseEntity, NumberEntity):
             self.airfryer.set_cook_temp(int(value))
         else:
             return self.airfryer.set_cook_time(int(value))
-
 
 
 class VeSyncNumberEntity(VeSyncBaseEntity, NumberEntity):

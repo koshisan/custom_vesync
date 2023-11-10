@@ -112,7 +112,7 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry) -> b
                 else:
                     hass.async_create_task(forward_setup(config_entry, platform))
 
-        for k, v in PLATFORMS.items():
+        for k in PLATFORMS.items():
             _add_new_devices(k)
 
     hass.services.async_register(

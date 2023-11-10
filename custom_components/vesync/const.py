@@ -132,4 +132,3 @@ SENSOR_TYPES_AIRFRYER = {
     #    "remaining_time",
     # ],
 }
-

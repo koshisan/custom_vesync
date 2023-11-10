@@ -88,7 +88,7 @@ def _ha_brightness_to_vesync(ha_brightness):
 class VeSyncBaseLight(VeSyncDevice, LightEntity):
     """Base class for VeSync Light Devices Representations."""
 
-    def __init_(self, light, coordinator):
+    def __init__(self, light, coordinator) -> None:
         """Initialize the VeSync light device."""
         super().__init__(light, coordinator)
 

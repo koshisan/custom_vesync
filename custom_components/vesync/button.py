@@ -84,7 +84,7 @@ SENSOR_TYPES_CAF = {
         "tempUnit": "c",
         "allowModified": True,
         "icon": "mdi:fan",
-        "recipeId":14,
+        "recipeId": 14,
     },
     "Reheat": {
         "cookSetTime": 300,
@@ -127,7 +127,7 @@ SENSOR_TYPES_CAF = {
         "recipeId": 17,
 
     },
-    "end":  {
+    "end": {
         "mode": "end",
         "name": "End cooking or preheating",
         "icon": "mdi:stop",
@@ -138,8 +138,8 @@ SENSOR_TYPES_CAF = {
         "icon": "mdi:update",
     },
     "startCook": {
-        "mode":"startCook",
-        "name":"Start Cook",
+        "mode": "startCook",
+        "name": "Start Cook",
         "icon": "mdi:play",
     },
 }
@@ -263,5 +263,4 @@ class VeSyncairfryerButton(VeSyncBaseEntity, ButtonEntity):
             self.airfryer.update()
         else:
             if (kitchen_model_features(self.airfryer.device_type)["module"] == "VeSyncAirFryerCAF"):
-                self.airfryer.cookv2(self.stype["cookTemp"], self.stype["cookSetTime"],self.stype["mode"])
-            else: self.airfryer.cook(250, 200)
+                self.airfryer.cookv2(self.stype["cookTemp"], self.stype["cookSetTime"], self.stype["mode"])

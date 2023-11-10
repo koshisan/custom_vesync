@@ -7,10 +7,11 @@ from homeassistant.core import HomeAssistant, callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect
 from homeassistant.helpers.entity import EntityCategory
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
+from pyvesync.vesynckitchen import model_features as kitchen_model_features
 
 from .common import VeSyncBaseEntity, has_feature
-from .const import (BINARY_SENSOR_TYPES_AIRFRYER, DOMAIN, VS_BINARY_SENSORS, VS_DISCOVERY, VS_AIRFRYER_TYPES )
-from pyvesync.vesynckitchen import model_features as kitchen_model_features
+from .const import (BINARY_SENSOR_TYPES_AIRFRYER, DOMAIN, VS_BINARY_SENSORS, VS_DISCOVERY, VS_AIRFRYER_TYPES)
+
 
 _LOGGER = logging.getLogger(__name__)
 

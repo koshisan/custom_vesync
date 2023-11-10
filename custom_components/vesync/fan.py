@@ -163,13 +163,7 @@ class VeSyncFanHA(VeSyncDevice, FanEntity):
 
         self.schedule_update_ha_state()
 
-    def turn_on(
-        self,
-        speed: str = None,
-        percentage: int = None,
-        preset_mode: str = None,
-        **kwargs,
-    ) -> None:
+    def turn_on(self, percentage: int = None, preset_mode: str = None, **kwargs,) -> None:
         """Turn the device on."""
         if preset_mode:
             self.set_preset_mode(preset_mode)
