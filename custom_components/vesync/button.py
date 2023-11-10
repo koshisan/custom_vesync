@@ -125,7 +125,6 @@ SENSOR_TYPES_CAF = {
         "allowModified": True,
         "icon": "",
         "recipeId": 17,
-
     },
     "end": {
         "mode": "end",
@@ -171,7 +170,6 @@ SENSOR_TYPES_CS158 = {
         "name": "Start Cook",
         "icon": "mdi:play",
     },
-
 }
 
 
@@ -262,5 +260,12 @@ class VeSyncairfryerButton(VeSyncBaseEntity, ButtonEntity):
         elif self.stype["mode"] == "update":
             self.airfryer.update()
         else:
-            if (kitchen_model_features(self.airfryer.device_type)["module"] == "VeSyncAirFryerCAF"):
-                self.airfryer.cookv2(self.stype["cookTemp"], self.stype["cookSetTime"], self.stype["mode"], )
+            if (
+                kitchen_model_features(self.airfryer.device_type)["module"]
+                == "VeSyncAirFryerCAF"
+            ):
+                self.airfryer.cookv2(
+                    self.stype["cookTemp"],
+                    self.stype["cookSetTime"],
+                    self.stype["mode"],
+                )

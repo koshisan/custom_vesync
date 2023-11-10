@@ -7,23 +7,19 @@ from homeassistant.components.sensor import (
     SensorStateClass,
 )
 from homeassistant.config_entries import ConfigEntry
-from homeassistant.const import (
-    ENERGY_KILO_WATT_HOUR,
-    PERCENTAGE,
-    POWER_WATT,
-)
-from pyvesync.vesynckitchen import model_features as kitchen_model_features
-from .const import VS_AIRFRYER_TYPES
+from homeassistant.const import ENERGY_KILO_WATT_HOUR, PERCENTAGE, POWER_WATT
 from homeassistant.core import HomeAssistant, callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect
 from homeassistant.helpers.entity import EntityCategory
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
+from pyvesync.vesynckitchen import model_features as kitchen_model_features
 
 from .common import VeSyncBaseEntity, has_feature
 from .const import (
     DEV_TYPE_TO_HA,
     DOMAIN,
     SENSOR_TYPES_AIRFRYER,
+    VS_AIRFRYER_TYPES,
     VS_DISCOVERY,
     VS_SENSORS,
 )
