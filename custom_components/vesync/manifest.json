@@ -4,22 +4,7 @@
   "domain": "vesyncv2",
   "version": "1.0.0",
   "description": "A custom component for Home Assistant that integrates with the VeSync family of smart home devices. It adds support for Etekcity VeSync Outlets and Switches.",
-  "dependencies": ["pyvesync==0.3.2"],
-  "requirements": ["https://github.com/tv4you2016/pyvesync"],
-  "codeowners": ["@markperdue", "@webdjoe", "@thegardenmonkey", "@vlebourl", "@tv4you2016"],
-  "config_flow": true,
-  "dhcp": [
-    {
-      "hostname": "levoit-*",
-      "macaddress": "*"
-    }
-  ],
-  "documentation": "https://www.home-assistant.io/integrations/vesync",
-  "iot_class": "cloud_polling",
-  "issue_tracker": "https://github.com/tv4you2016/pyvesync",
   "dependencies": ["pyvesync==2.1.11"],
-  "requirements": ["https://github.com/tv4you2016/pyvesync"],
-  
-  "version": "1.1.1"
+  "requirements": ["https://github.com/tv4you2016/pyvesync"]
  }
 
