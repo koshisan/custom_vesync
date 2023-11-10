@@ -19,7 +19,6 @@ from .const import (
     VS_LIGHTS,
     VS_NUMBERS,
     VS_SENSORS,
-
     VS_SWITCHES,
 )
 

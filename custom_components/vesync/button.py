@@ -9,7 +9,7 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from pyvesync.vesynckitchen import model_features as kitchen_model_features
 
 from .common import VeSyncBaseEntity
-from .const import DOMAIN, VS_BUTTON, VS_DISCOVERY, VS_AIRFRYER_TYPES
+from .const import DOMAIN, VS_AIRFRYER_TYPES, VS_BUTTON, VS_DISCOVERY
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -64,7 +64,7 @@ SENSOR_TYPES_CAF = {
         "tempUnit": "c",
         "allowModified": True,
         "icon": "mdi:french-fries",
-        "recipeId": 6
+        "recipeId": 6,
     },
     "Frozen": {
         "cookSetTime": 720,
@@ -94,7 +94,7 @@ SENSOR_TYPES_CAF = {
         "tempUnit": "c",
         "allowModified": True,
         "icon": "",
-        "recipeId": 16
+        "recipeId": 16,
     },
     "Roast": {
         "cookSetTime": 600,
@@ -104,7 +104,7 @@ SENSOR_TYPES_CAF = {
         "tempUnit": "c",
         "allowModified": True,
         "icon": "",
-        "recipeId": 13
+        "recipeId": 13,
     },
     "Bake": {
         "cookSetTime": 1200,
@@ -114,7 +114,7 @@ SENSOR_TYPES_CAF = {
         "tempUnit": "c",
         "allowModified": True,
         "icon": "mdi:baguette",
-        "recipeId": 9
+        "recipeId": 9,
     },
     "Broil": {
         "cookSetTime": 600,
@@ -206,7 +206,7 @@ def _setup_entities(devices, async_add_entities, coordinator):
     entities = []
     for dev in devices:
         if kitchen_model_features(dev.device_type)["module"] in VS_AIRFRYER_TYPES:
-            if (kitchen_model_features(dev.device_type)["module"] == "VeSyncAirFryerCAF"):
+            if kitchen_model_features(dev.device_type)["module"] == "VeSyncAirFryerCAF":
                 for stype in SENSOR_TYPES_CAF.values():
                     entities.append(
                         VeSyncairfryerButton(
@@ -263,4 +263,4 @@ class VeSyncairfryerButton(VeSyncBaseEntity, ButtonEntity):
             self.airfryer.update()
         else:
             if (kitchen_model_features(self.airfryer.device_type)["module"] == "VeSyncAirFryerCAF"):
-                self.airfryer.cookv2(self.stype["cookTemp"], self.stype["cookSetTime"], self.stype["mode"])
+                self.airfryer.cookv2(self.stype["cookTemp"], self.stype["cookSetTime"], self.stype["mode"], )

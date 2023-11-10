@@ -78,7 +78,7 @@ NUMBER_TYPES_AIRFRYER = {
         "cook_time",
         "cook time",
         "mdi:rice",
-    ]
+    ],
 }
 
 SENSOR_TYPES_AIRFRYER = {
