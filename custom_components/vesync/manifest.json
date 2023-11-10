@@ -5,6 +5,8 @@
   "version": "1.0.0",
   "description": "A custom component for Home Assistant that integrates with the VeSync family of smart home devices. It adds support for Etekcity VeSync Outlets and Switches.",
   "dependencies": ["pyvesync==2.1.11"],
-  "requirements": ["https://github.com/tv4you2016/pyvesync"]
+  "requirements": ["https://github.com/tv4you2016/pyvesync"],
+  "codeowners": ["@markperdue", "@webdjoe", "@thegardenmonkey", "@vlebourl"]
+  
  }
 
