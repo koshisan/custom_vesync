@@ -1,5 +1,5 @@
 {
-  "domain": "custom_vesync",
+  "domain": "vesync",
   "name": "VeSync",
   "codeowners": ["@markperdue", "@webdjoe", "@thegardenmonkey", "@vlebourl","@tv4you2016"],
   "config_flow": true,
