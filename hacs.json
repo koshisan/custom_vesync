@@ -1,4 +1,6 @@
 {
   "name": "Custom VeSync",
-  "render_readme": true
+  "render_readme": true,
+  "iot_class": "Cloud Polling"
+
 }
