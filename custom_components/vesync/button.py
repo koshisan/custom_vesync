@@ -15,7 +15,6 @@ _LOGGER = logging.getLogger(__name__)
 
 
 SENSOR_TYPES_CAF = {
-
     "Chicken": {
         "cookSetTime": 1200,
         "cookTemp": 200,
