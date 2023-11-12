@@ -1,1 +1,1 @@
-pyvesync@git+pyvesync@git+https://github.com/tv4you2016/pyvesync.git
+pyvesync==2.1.10
