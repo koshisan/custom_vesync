@@ -118,6 +118,7 @@ class VeSyncairfryerNumber(VeSyncBaseEntity, NumberEntity):
 
     @property
     def mode(self):
+        """Return mode this device."""
         return "box"
 
     @property
