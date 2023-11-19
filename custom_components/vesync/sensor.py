@@ -134,6 +134,8 @@ class VeSyncairfryerSensor(VeSyncBaseEntity, SensorEntity):
         return self.stype[3]
 
 
+
+
 class VeSyncOutletSensorEntity(VeSyncBaseEntity, SensorEntity):
     """Representation of a sensor describing diagnostics of a VeSync outlet."""
 

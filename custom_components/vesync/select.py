@@ -16,26 +16,20 @@ _LOGGER = logging.getLogger(__name__)
 
 
 def get_auto_generate_data_points() -> list:
-    # Initialize data points list
     dps = []
-
-    # Iterate through sensor types
     for stype in SENSOR_TYPES_CAF.values():
         dps.append(stype["mode"])
 
-    # Return data points list
     return dps
 
-
 def get_values(amode , avalue) -> int:
-    """Find bvalue by mode and avalue. Returns int."""
     bvalue = ""
     for stype in SENSOR_TYPES_CAF.values():
         if ((stype["mode"]) == amode):
             bvalue = stype[avalue]
             break
 
-    return int(bvalue)
+    return bvalue
 
 
 async def async_setup_entry(
@@ -109,11 +103,9 @@ class VeSyncairfryerSelectMenu(VeSyncBaseEntity, SelectEntity):
         return self._state
 
 
-    
-    
     def select_option(self, option):
         self._state = option
         self.airfryer.set_kitchen_mode(option)
-        self.airfryer.set_cook_temp(get_values(option, 'cookTemp'))
-        self.airfryer.set_cook_time(get_values(option, 'cookSetTime'))
+        self.airfryer.set_cook_temp(get_values(option,'cookTemp'))
+        self.airfryer.set_cook_time(get_values(option,'cookSetTime'))
         self.schedule_update_ha_state(True)
