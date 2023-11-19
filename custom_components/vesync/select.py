@@ -8,7 +8,6 @@ from homeassistant.helpers.dispatcher import async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from pyvesync.vesynckitchen import model_features as kitchen_model_features
 
-
 from .common import VeSyncBaseEntity
 from .const import DOMAIN, SENSOR_TYPES_CAF, VS_AIRFRYER_TYPES, VS_DISCOVERY, VS_SELECT
 
