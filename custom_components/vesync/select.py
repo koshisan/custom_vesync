@@ -16,19 +16,21 @@ _LOGGER = logging.getLogger(__name__)
 
 
 def get_auto_generate_data_points() -> list:
+    """Get Options."""
     dps = []
     for stype in SENSOR_TYPES_CAF.values():
         dps.append(stype["mode"])
 
     return dps
 
+
 def get_values(amode , avalue) -> int:
+    """Get Values."""
     bvalue = ""
     for stype in SENSOR_TYPES_CAF.values():
         if ((stype["mode"]) == amode):
             bvalue = stype[avalue]
             break
-
     return bvalue
 
 
