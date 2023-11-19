@@ -106,7 +106,7 @@ class VeSyncairfryerSelectMenu(VeSyncBaseEntity, SelectEntity):
     def current_option(self):
         """Return current option."""
         return self._state
-   
+
     def select_option(self, option):
         """Select option."""
         self._state = option

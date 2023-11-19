@@ -25,7 +25,6 @@ from .const import (
     VS_SELECT,
     VS_SENSORS,
     VS_SWITCHES,
-    
 )
 
 PLATFORMS = {
