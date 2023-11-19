@@ -45,7 +45,6 @@ def _setup_entities(devices, async_add_entities, coordinator):
     entities = []
     for dev in devices:
         if kitchen_model_features(dev.device_type)["module"] in VS_AIRFRYER_TYPES:
-
             for stype in BTN_TYPES.values():
                 if (stype["mode"] == "pause") | (stype["mode"] == "resume"):
                     if (
@@ -110,4 +109,3 @@ class VeSyncairfryerButton(VeSyncBaseEntity, ButtonEntity):
                 == "VeSyncAirFryerCAF"
             ):
                 self.airfryer.cookv2()
-

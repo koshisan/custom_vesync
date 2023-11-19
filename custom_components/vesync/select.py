@@ -106,11 +106,11 @@ class VeSyncairfryerSelectMenu(VeSyncBaseEntity, SelectEntity):
     def current_option(self):
         """Return current option."""
         return self._state
-    
+   
     def select_option(self, option):
-        """Sekect option."""
+        """Select option."""
         self._state = option
         self.airfryer.set_kitchen_mode(option)
-        self.airfryer.set_cook_temp(get_values(option,"cookTemp"))
-        self.airfryer.set_cook_time(get_values(option,"cookSetTime"))
+        self.airfryer.set_cook_temp(get_values(option, "cookTemp"))
+        self.airfryer.set_cook_time(get_values(option, "cookSetTime"))
         self.schedule_update_ha_state(True)

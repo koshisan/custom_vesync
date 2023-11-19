@@ -21,8 +21,8 @@ from .const import (
     VS_HUMIDIFIERS,
     VS_LIGHTS,
     VS_MANAGER,
-    VS_SELECT,
     VS_NUMBERS,
+    VS_SELECT,
     VS_SENSORS,
     VS_SWITCHES,
     

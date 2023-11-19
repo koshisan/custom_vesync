@@ -17,8 +17,8 @@ from .const import (
     VS_HUMIDIFIERS,
     VS_HUMIDIFIERS_TYPES,
     VS_LIGHTS,
-    VS_SELECT,
     VS_NUMBERS,
+    VS_SELECT,
     VS_SENSORS,
     VS_SWITCHES,
     
@@ -134,7 +134,7 @@ async def async_process_devices(hass, manager):
 
             else:
                 _LOGGER.error(
-                    "Found air fryer type %s , model %s NOT SUPORT.",
+                    "Found air fryer type %s , model %s NOT SUPPORT.",
                     airfryer.device_name,
                     airfryer.device_type,
                 )
