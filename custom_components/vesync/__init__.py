@@ -21,10 +21,11 @@ from .const import (
     VS_HUMIDIFIERS,
     VS_LIGHTS,
     VS_MANAGER,
+    VS_SELECT,
     VS_NUMBERS,
     VS_SENSORS,
     VS_SWITCHES,
-    VS_SELECT,
+    
 )
 
 PLATFORMS = {

@@ -10,7 +10,7 @@ from pyvesync.vesynckitchen import model_features as kitchen_model_features
 
 
 from .common import VeSyncBaseEntity
-from .const import DOMAIN, VS_SELECT, VS_DISCOVERY, SENSOR_TYPES_CAF, VS_AIRFRYER_TYPES
+from .const import DOMAIN, SENSOR_TYPES_CAF, VS_AIRFRYER_TYPES, VS_DISCOVERY, VS_SELECT
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -24,11 +24,11 @@ def get_auto_generate_data_points() -> list:
     return dps
 
 
-def get_values(amode , avalue) -> int:
+def get_values(amode, avalue) -> int:
     """Get Values."""
     bvalue = ""
     for stype in SENSOR_TYPES_CAF.values():
-        if ((stype["mode"]) == amode):
+        if (stype["mode"]) == amode:
             bvalue = stype[avalue]
             break
     return bvalue
@@ -87,27 +87,30 @@ class VeSyncairfryerSelectMenu(VeSyncBaseEntity, SelectEntity):
         self._state = self.airfryer.recipename
         self._options = get_auto_generate_data_points()
 
-
     @property
     def should_poll(self):
+        """Return the polling state."""
         return True
 
     @property
     def name(self):
+        """Return the name."""
         return self._name
 
     @property
     def options(self):
+        """Return the options."""
         return self._options
 
     @property
     def current_option(self):
+        """Return current option."""
         return self._state
-
-
+    
     def select_option(self, option):
+        """Sekect option."""
         self._state = option
         self.airfryer.set_kitchen_mode(option)
-        self.airfryer.set_cook_temp(get_values(option,'cookTemp'))
-        self.airfryer.set_cook_time(get_values(option,'cookSetTime'))
+        self.airfryer.set_cook_temp(get_values(option,"cookTemp"))
+        self.airfryer.set_cook_time(get_values(option,"cookSetTime"))
         self.schedule_update_ha_state(True)

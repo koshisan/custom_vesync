@@ -9,10 +9,9 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from pyvesync.vesynckitchen import model_features as kitchen_model_features
 
 from .common import VeSyncBaseEntity
-from .const import DOMAIN, VS_AIRFRYER_TYPES, VS_BUTTON, VS_DISCOVERY , BTN_TYPES
+from .const import BTN_TYPES, DOMAIN, VS_AIRFRYER_TYPES, VS_BUTTON, VS_DISCOVERY
 
 _LOGGER = logging.getLogger(__name__)
-
 
 
 async def async_setup_entry(
@@ -48,8 +47,11 @@ def _setup_entities(devices, async_add_entities, coordinator):
         if kitchen_model_features(dev.device_type)["module"] in VS_AIRFRYER_TYPES:
 
             for stype in BTN_TYPES.values():
-                if ((stype["mode"] == "pause") | (stype["mode"] == "resume")):
-                    if kitchen_model_features(dev.device_type)["module"] != "VeSyncAirFryerCAF":
+                if (stype["mode"] == "pause") | (stype["mode"] == "resume"):
+                    if (
+                        kitchen_model_features(dev.device_type)["module"]
+                        != "VeSyncAirFryerCAF"
+                    ):
                         entities.append(
                             VeSyncairfryerButton(
                                 dev,

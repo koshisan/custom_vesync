@@ -249,7 +249,6 @@ SENSOR_TYPES_CAF = {
 }
 
 BTN_TYPES = {
-
     "end": {
         "mode": "end",
         "name": "End cooking or preheating",
