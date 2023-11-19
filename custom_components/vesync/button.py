@@ -9,167 +9,10 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from pyvesync.vesynckitchen import model_features as kitchen_model_features
 
 from .common import VeSyncBaseEntity
-from .const import DOMAIN, VS_AIRFRYER_TYPES, VS_BUTTON, VS_DISCOVERY
+from .const import DOMAIN, VS_AIRFRYER_TYPES, VS_BUTTON, VS_DISCOVERY , BTN_TYPES
 
 _LOGGER = logging.getLogger(__name__)
 
-
-SENSOR_TYPES_CAF = {
-    "Chicken": {
-        "cookSetTime": 1200,
-        "cookTemp": 200,
-        "mode": "Chicken",
-        "shakeTime": 0,
-        "tempUnit": "c",
-        "allowModified": True,
-        "icon": "mdi:food-drumstick",
-        "recipeId": 2,
-    },
-    "Steak": {
-        "cookSetTime": 480,
-        "cookTemp": 205,
-        "mode": "Steak",
-        "shakeTime": 0,
-        "tempUnit": "c",
-        "allowModified": True,
-        "icon": "mdi:food-steak",
-        "recipeId": 1,
-    },
-    "Seafood": {
-        "cookSetTime": 480,
-        "cookTemp": 190,
-        "mode": "Seafood",
-        "shakeTime": 0,
-        "tempUnit": "c",
-        "allowModified": True,
-        "icon": "mdi:fish",
-        "recipeId": 3,
-    },
-    "Veggies": {
-        "cookSetTime": 360,
-        "cookTemp": 195,
-        "mode": "Veggies",
-        "shakeTime": 0,
-        "tempUnit": "c",
-        "allowModified": True,
-        "icon": "mdi:carrot",
-        "recipeId": 15,
-    },
-    "French fries": {
-        "cookSetTime": 1200,
-        "cookTemp": 195,
-        "mode": "French fries",
-        "shakeTime": 0,
-        "tempUnit": "c",
-        "allowModified": True,
-        "icon": "mdi:french-fries",
-        "recipeId": 6,
-    },
-    "Frozen": {
-        "cookSetTime": 720,
-        "cookTemp": 200,
-        "mode": "Frozen",
-        "shakeTime": 0,
-        "tempUnit": "c",
-        "allowModified": True,
-        "icon": "mdi:snowflake",
-        "recipeId": 5,
-    },
-    "AirFry": {
-        "cookSetTime": 600,
-        "cookTemp": 180,
-        "mode": "AirFry",
-        "shakeTime": 0,
-        "tempUnit": "c",
-        "allowModified": True,
-        "icon": "mdi:fan",
-        "recipeId": 14,
-    },
-    "Reheat": {
-        "cookSetTime": 300,
-        "cookTemp": 175,
-        "mode": "Reheat",
-        "shakeTime": 0,
-        "tempUnit": "c",
-        "allowModified": True,
-        "icon": "",
-        "recipeId": 16,
-    },
-    "Roast": {
-        "cookSetTime": 600,
-        "cookTemp": 205,
-        "mode": "Roast",
-        "shakeTime": 0,
-        "tempUnit": "c",
-        "allowModified": True,
-        "icon": "",
-        "recipeId": 13,
-    },
-    "Bake": {
-        "cookSetTime": 1200,
-        "cookTemp": 160,
-        "mode": "Bake",
-        "shakeTime": 0,
-        "tempUnit": "c",
-        "allowModified": True,
-        "icon": "mdi:baguette",
-        "recipeId": 9,
-    },
-    "Broil": {
-        "cookSetTime": 600,
-        "cookTemp": 205,
-        "mode": "Broil",
-        "shakeTime": 0,
-        "tempUnit": "c",
-        "allowModified": True,
-        "icon": "",
-        "recipeId": 17,
-    },
-    "end": {
-        "mode": "end",
-        "name": "End cooking or preheating",
-        "icon": "mdi:stop",
-    },
-    "update": {
-        "mode": "update",
-        "name": "Force Update",
-        "icon": "mdi:update",
-    },
-    "startCook": {
-        "mode": "startCook",
-        "name": "Start Cook",
-        "icon": "mdi:play",
-    },
-}
-
-SENSOR_TYPES_CS158 = {
-    # unique_id,name # icon,
-    "end": {
-        "mode": "end",
-        "name": "End cooking or preheating",
-        "icon": "mdi:stop",
-    },
-    "pause": {
-        "mode": "pause",
-        "name": "Pause air fryer when in cooking or heating",
-        "icon": "mdi:pause",
-    },
-    "resume": {
-        "mode": "resume",
-        "name": "Resume air fryer when in cookStop or preheatStop",
-        "icon": "mdi:play",
-    },
-    "update": {
-        "mode": "update",
-        "name": "Force Update",
-        "icon": "mdi:update",
-    },
-    "startCook": {
-        "mode": "startCook",
-        "name": "Start Cook",
-        "icon": "mdi:play",
-    },
-}
 
 
 async def async_setup_entry(
@@ -203,17 +46,18 @@ def _setup_entities(devices, async_add_entities, coordinator):
     entities = []
     for dev in devices:
         if kitchen_model_features(dev.device_type)["module"] in VS_AIRFRYER_TYPES:
-            if kitchen_model_features(dev.device_type)["module"] == "VeSyncAirFryerCAF":
-                for stype in SENSOR_TYPES_CAF.values():
-                    entities.append(
-                        VeSyncairfryerButton(
-                            dev,
-                            coordinator,
-                            stype,
+
+            for stype in BTN_TYPES.values():
+                if ((stype["mode"] == "pause") | (stype["mode"] == "resume")):
+                    if kitchen_model_features(dev.device_type)["module"] != "VeSyncAirFryerCAF":
+                        entities.append(
+                            VeSyncairfryerButton(
+                                dev,
+                                coordinator,
+                                stype,
+                            )
                         )
-                    )
-            else:
-                for stype in SENSOR_TYPES_CS158.values():
+                else:
                     entities.append(
                         VeSyncairfryerButton(
                             dev,
@@ -263,8 +107,5 @@ class VeSyncairfryerButton(VeSyncBaseEntity, ButtonEntity):
                 kitchen_model_features(self.airfryer.device_type)["module"]
                 == "VeSyncAirFryerCAF"
             ):
-                self.airfryer.cookv2(
-                    self.stype["cookTemp"],
-                    self.stype["cookSetTime"],
-                    self.stype["mode"],
-                )
+                self.airfryer.cookv2()
+
