@@ -72,8 +72,6 @@ def _setup_entities(devices, async_add_entities, coordinator):
         if has_feature(dev, "details", "water_tank_lifted"):
             entities.append(VeSyncWaterTankLiftedSensor(dev, coordinator))
 
-
-
     async_add_entities(entities, update_before_add=True)
 
 
@@ -163,4 +161,3 @@ class VeSyncWaterTankLiftedSensor(VeSyncBinarySensorEntity):
     def is_on(self) -> bool:
         """Return a value indicating whether the Humidifier's water tank is lifted."""
         return self.smarthumidifier.details["water_tank_lifted"]
-

@@ -22,9 +22,9 @@ from .const import (
     VS_LIGHTS,
     VS_MANAGER,
     VS_NUMBERS,
+    VS_SELECT,
     VS_SENSORS,
     VS_SWITCHES,
-    VS_SELECT,
 )
 
 PLATFORMS = {

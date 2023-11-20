@@ -18,9 +18,9 @@ from .const import (
     VS_HUMIDIFIERS_TYPES,
     VS_LIGHTS,
     VS_NUMBERS,
+    VS_SELECT,
     VS_SENSORS,
     VS_SWITCHES,
-    VS_SELECT,
 )
 
 _LOGGER = logging.getLogger(__name__)
@@ -29,6 +29,7 @@ _LOGGER = logging.getLogger(__name__)
 def has_feature(device, dictionary, attribute):
     """Return the detail of the attribute."""
     return getattr(device, dictionary, {}).get(attribute, None) is not None
+
 
 def is_humidifier(device_type: str) -> bool:
     """Return true if the device type is a humidifier."""
@@ -97,7 +98,6 @@ async def async_process_devices(hass, manager):
             devices[VS_BINARY_SENSORS].append(fan)
             devices[VS_LIGHTS].append(fan)
 
-
     if manager.bulbs:
         devices[VS_LIGHTS].extend(manager.bulbs)
 
@@ -133,7 +133,7 @@ async def async_process_devices(hass, manager):
 
             else:
                 _LOGGER.error(
-                    "Found air fryer type %s , model %s NOT SUPORT.",
+                    "Found air fryer type %s , model %s NOT SUPPORT.",
                     airfryer.device_name,
                     airfryer.device_type,
                 )
