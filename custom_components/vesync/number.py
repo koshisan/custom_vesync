@@ -3,7 +3,7 @@
 from homeassistant.components.number import NumberEntity
 from homeassistant.components.sensor import SensorDeviceClass
 from homeassistant.config_entries import ConfigEntry
-from homeassistant.const import PERCENTAGE, TEMP_CELSIUS, TEMP_FAHRENHEIT, TIME_MINUTES
+from homeassistant.const import PERCENTAGE, UnitOfTemperature, UnitOfTime
 from homeassistant.core import HomeAssistant, callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect
 from homeassistant.helpers.entity import EntityCategory
@@ -139,11 +139,11 @@ class VeSyncairfryerNumber(VeSyncBaseEntity, NumberEntity):
         """Return the native unit of measurement for the target humidity level."""
         if self.stype[0] == "cook_temp":
             if self.airfryer.temp_unit.lower() in ["f", "fahrenheit"]:
-                return TEMP_FAHRENHEIT
+                return UnitOfTemperature.FAHRENHEIT
             elif self.airfryer.temp_unit.lower() in ["c", "celsius"]:
-                return TEMP_CELSIUS
+                return UnitOfTemperature.CELSIUS
         else:
-            return TIME_MINUTES
+            return UnitOfTime.MINUTES
 
     @property
     def device_class(self):

@@ -103,9 +103,8 @@ class VeSyncairfryerButton(VeSyncBaseEntity, ButtonEntity):
             self.airfryer.resume()
         elif self.stype["mode"] == "update":
             self.airfryer.update()
-        else:
-            if (
-                kitchen_model_features(self.airfryer.device_type)["module"]
-                == "VeSyncAirFryerCAF"
-            ):
-                self.airfryer.cookv2()
+        elif (
+            kitchen_model_features(self.airfryer.device_type)["module"]
+            == "VeSyncAirFryerCAF"
+        ):
+            self.airfryer.cookv2()
