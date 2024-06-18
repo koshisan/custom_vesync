@@ -111,9 +111,9 @@ SENSOR_TYPES_AIRFRYER = {
     "cook_last_time": [
         "cook_last_time",
         "Cook Remaining",
-        UnitOfTime.MINUTES,
+        UnitOfTime.SECONDS,
         "mdi:timer",
-        UnitOfTime.MINUTES,
+        UnitOfTime.SECONDS,
         "cook_last_time",
     ],
     "preheat_last_time": [
