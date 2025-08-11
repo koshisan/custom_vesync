@@ -1,6 +1,7 @@
 """Constants for VeSync Component."""
 
-from homeassistant.const import DEVICE_CLASS_TEMPERATURE, TEMP_CELSIUS, TIME_MINUTES
+from homeassistant.components.sensor import SensorDeviceClass
+from homeassistant.const import UnitOfTemperature, UnitOfTime
 
 DOMAIN = "vesync"
 VS_DISCOVERY = "vesync_discovery_{}"
@@ -31,7 +32,6 @@ VS_FAN_TYPES = ["VeSyncAirBypass", "VeSyncAir131", "VeSyncVital"]
 VS_HUMIDIFIERS_TYPES = ["VeSyncHumid200300S", "VeSyncHumid200S", "VeSyncHumid1000S"]
 VS_AIRFRYER_TYPES = ["VeSyncAirFryer158"]
 
-
 DEV_TYPE_TO_HA = {
     "ESL100": "bulb-dimmable",
     "ESL100CW": "bulb-tunable-white",
@@ -46,9 +46,8 @@ DEV_TYPE_TO_HA = {
     "ESWD16": "walldimmer",
 }
 
-
 BINARY_SENSOR_TYPES_AIRFRYER = {
-    # unique_id,name # icon, #attribute read,
+    # unique_id, name, icon
     "is_heating": [
         "is_heating",
         "preheating",
@@ -66,39 +65,38 @@ BINARY_SENSOR_TYPES_AIRFRYER = {
     ],
 }
 
-
 SENSOR_TYPES_AIRFRYER = {
-    # unique_id ,#name ,# unit of measurement,# icon, # device class, #attribute read,
+    # unique_id, name, unit, icon, device_class, attribute
     "current_temp": [
         "current_temperature",
         "Current temperature",
-        TEMP_CELSIUS,
+        UnitOfTemperature.CELSIUS,
         None,
-        DEVICE_CLASS_TEMPERATURE,
+        SensorDeviceClass.TEMPERATURE,
         "current_temp",
     ],
     "cook_set_temp": [
         "set_temperature",
         "Set temperature",
-        TEMP_CELSIUS,
+        UnitOfTemperature.CELSIUS,
         None,
-        DEVICE_CLASS_TEMPERATURE,
+        SensorDeviceClass.TEMPERATURE,
         "cook_set_temp",
     ],
     "cook_last_time": [
         "cook_last_time",
         "Cook Remaining",
-        TIME_MINUTES,
+        UnitOfTime.MINUTES,
         "mdi:timer",
-        TIME_MINUTES,
+        None,
         "cook_last_time",
     ],
     "preheat_last_time": [
         "preheat_last_time",
         "Preheat Remaining",
-        TIME_MINUTES,
+        UnitOfTime.MINUTES,
         "mdi:timer",
-        TIME_MINUTES,
+        None,
         "preheat_last_time",
     ],
     "cook_status": [
@@ -109,12 +107,4 @@ SENSOR_TYPES_AIRFRYER = {
         None,
         "cook_status",
     ],
-    # "remaining_time": [
-    #    "remaining_time",
-    #    "running:",
-    #    TIME_MINUTES,
-    #    "mdi:timer",
-    #    TIME_MINUTES,
-    #    "remaining_time",
-    # ],
 }
